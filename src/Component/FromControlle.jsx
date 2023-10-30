@@ -7,14 +7,7 @@ const FromControlle = () => {
     })
     const {Name,email,password} = user
     const handleFrom = (e) =>{
-        const fieldName = e.target.name;
-        if(fieldName==="Name"){
-            setUser({Name:e.target.value,email,password})
-        }else if(fieldName==="email"){
-            setUser({Name,email : e.target.value,password})
-        }else if(fieldName==="password"){
-            setUser({Name, email , password:e.target.value })
-        }
+        setUser({...user,[e.target.name]:e.target.value})
     }
     const handleFromSubmit = (e)=>{
         e.preventDefault()
