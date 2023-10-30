@@ -1,55 +1,48 @@
 import React, { useState } from 'react';
-import "../css/style.css"
 const FromControlle = () => {
-    const [name,setName] = useState('');
-    const [email,setEmail] = useState('');
-    const [password,setPassword] = useState('');
-    const handleName = (e)=>{
-        setName(e.target.value)
-      }
-      const handleEmail = (e)=>{
-        setEmail(e.target.value)
-      }
-      const handlePassword = (e) =>{
-        setPassword(e.target.value)
-      }
-      const fromHandle = (e)=>{
+    const [user,setUser] = useState({
+        Name : "",
+        email : "",
+        password : ""
+    })
+    const {Name,email,password} = user
+    const handleName =(e) =>{
+        setUser({Name:e.target.value,email,password})
+    }
+    const handleEmail = (e) =>{
+        setUser({Name,email : e.target.value,password})
+    }
+    const handlePassword = (e)=>{
+        setUser({Name, email , password:e.target.value })
+    }
+    const handleFromSubmit = (e)=>{
         e.preventDefault()
-       console.log("From submited")
-        // console.log(name,email,password)
-        let userInfo = {
-            name:name,
-            email:email,
-            password:password
-        }
-        console.log(userInfo)
-      }
+        console.log("form is submited")
+        console.log(user)
+    }
     return (
         <div>
-            <h1>Registration From</h1>
-      <form action="" onSubmit={fromHandle} >
-        <div className='formController' >
-          <label htmlFor="name">Name : </label>
-          <input onChange={handleName} type="text"
-          value={name}
-          name='name' id='name' required />
-        </div>
-        <div className='formController' >
-          <label htmlFor="email">Email : </label>
-          <input onChange={handleEmail} type="email" 
-          value={email}
-          name="email" id="email" required />
-        </div>
-        <div className='formController' >
-          <label htmlFor="password">Password : </label>
-          <input onChange={handlePassword} type="password"
-            value={password}
-          name="password" id="password" required />
-        </div>
-        <div className='formController' >
-          <button type="submit" >Submit</button>
-        </div>
-      </form>
+            <h1>Register form</h1>
+            <form action="" onSubmit={handleFromSubmit} >
+            <div>
+                <label htmlFor="Name">Name : </label>
+                <input  type="text" name="Name" 
+                onChange={handleName} value={Name} id="Name" />
+            </div>
+            <div>
+                <label htmlFor="email">Email : </label>
+                <input type="email" name="email" value={email}
+                onChange={handleEmail}id="email" />
+            </div>
+            <div>
+                <label htmlFor="password">Password : </label>
+                <input type="password" name="password" value={password}
+                onChange={handlePassword} id="password" />
+            </div>
+            <div>
+                <button type= "submit" >Submit</button>
+            </div>
+            </form>
         </div>
     );
 };
